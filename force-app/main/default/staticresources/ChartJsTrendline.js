@@ -1,0 +1,18 @@
+/**
+ * Minified by jsDelivr using Terser v5.14.1.
+ * Original file: /npm/chartjs-plugin-trendline@2.0.0/src/chartjs-plugin-trendline.js
+ *
+ * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+ */
+/*!
+ * chartjs-plugin-trendline.js
+ * Version: 2.0.0
+ *
+ * Copyright 2022 Marcus Alsterfjord
+ * Released under the MIT license
+ * https://github.com/Makanz/chartjs-plugin-trendline/blob/master/README.md
+ *
+ * Mod by: vesal: accept also xy-data so works with scatter
+ */
+var pluginTrendlineLinear={id:"chartjs-plugin-trendline",afterDatasetsDraw:function(t){var i,e;for(var s in t.scales)if("x"==s[0]?e=t.scales[s]:i=t.scales[s],e&&i)break;var a=t.ctx;t.data.datasets.forEach((function(i,s){if(i.trendlineLinear&&t.isDatasetVisible(s)&&0!=i.data.length){var n=t.getDatasetMeta(s);addFitter(n,a,i,e,t.scales[n.yAxisID])}})),a.setLineDash([])}};function addFitter(t,i,e,s,a){var n=e.borderColor||"rgba(169,169,169, .6)",r=e.trendlineLinear.colorMin||n,o=e.trendlineLinear.colorMax||n,l=e.trendlineLinear.width||e.borderWidth,h=e.trendlineLinear.lineStyle||"solid",u=e.trendlineLinear.fillColor;l=void 0!==l?l:3;var d=new LineFitter,m=e.data.findIndex((t=>null!=t)),c=e.data.length-1,x=t.data[m].x,f=t.data[c].x,X="object"==typeof e.data[m];e.data.forEach((function(t,i){if(null!=t)if("time"===s.options.type){var e=null!=t.x?t.x:t.t;d.add(new Date(e).getTime(),t.y)}else X?d.add(t.x,t.y):d.add(i,t)}));var p,g,v=s.getPixelForValue(d.minx),L=a.getPixelForValue(d.f(d.minx));if(e.trendlineLinear.projection&&d.scale()<0){var w=d.fo();w<d.minx&&(w=d.maxx),p=s.getPixelForValue(w),g=a.getPixelForValue(d.f(w))}else p=s.getPixelForValue(d.maxx),g=a.getPixelForValue(d.f(d.maxx));X||(v=x,p=f);var y=t.controller.chart.chartArea.bottom,F=t.controller.chart.width;if(L>y){var Y=L-y,P=L-g;L=y,v+=F*(Y/P)}else if(g>y){Y=g-y,P=g-L;g=y,p=F-(p-(F-F*(Y/P)))}i.lineWidth=l,"dotted"===h&&i.setLineDash([2,3]),i.beginPath(),i.moveTo(v,L),i.lineTo(p,g);var T=i.createLinearGradient(v,L,p,g);g<L?(T.addColorStop(0,o),T.addColorStop(1,r)):(T.addColorStop(0,r),T.addColorStop(1,o)),i.strokeStyle=T,i.stroke(),i.closePath(),u&&(i.fillStyle=u,i.beginPath(),i.moveTo(v,L),i.lineTo(p,g),i.lineTo(p,y),i.lineTo(v,y),i.closePath(),i.fill())}function LineFitter(){this.count=0,this.sumX=0,this.sumX2=0,this.sumXY=0,this.sumY=0,this.minx=1e100,this.maxx=-1e100,this.maxy=-1e100}LineFitter.prototype={add:function(t,i){t=parseFloat(t),i=parseFloat(i),this.count++,this.sumX+=t,this.sumX2+=t*t,this.sumXY+=t*i,this.sumY+=i,t<this.minx&&(this.minx=t),t>this.maxx&&(this.maxx=t),i>this.maxy&&(this.maxy=i)},f:function(t){t=parseFloat(t);var i=this.count*this.sumX2-this.sumX*this.sumX;return(this.sumX2*this.sumY-this.sumX*this.sumXY)/i+t*((this.count*this.sumXY-this.sumX*this.sumY)/i)},fo:function(){var t=this.count*this.sumX2-this.sumX*this.sumX;return-((this.sumX2*this.sumY-this.sumX*this.sumXY)/t)/((this.count*this.sumXY-this.sumX*this.sumY)/t)},scale:function(){var t=this.count*this.sumX2-this.sumX*this.sumX;return(this.count*this.sumXY-this.sumX*this.sumY)/t}},"undefined"!=typeof window&&window.Chart&&(window.Chart.hasOwnProperty("register")?window.Chart.register(pluginTrendlineLinear):window.Chart.plugins.register(pluginTrendlineLinear));try{module.exports=exports=pluginTrendlineLinear}catch(t){}
+//# sourceMappingURL=/sm/6057085f8343623ade34eafe6c6bc4807563dc83ddea5b8a5b5b65f25295d95d.map
